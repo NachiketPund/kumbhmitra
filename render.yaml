@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: kumbhmitra-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run migrate && npm start
+    rootDir: server
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_JWT_SECRET
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://kumbhmitra-frontend.onrender.com
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    healthCheckPath: /api/health
